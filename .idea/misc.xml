@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/EvilBot[Trivia]/pom.xml" />
+        <option value="$PROJECT_DIR$/EvilBot[Twitch Notify]/pom.xml" />
+        <option value="$PROJECT_DIR$/EvilBot[Quotes]/pom.xml" />
+        <option value="$PROJECT_DIR$/EvilBot/pom.xml" />
+        <option value="$PROJECT_DIR$/EvilBot[Movies]/pom.xml" />
+        <option value="$PROJECT_DIR$/EvilBot[Rebooter]/pom.xml" />
+        <option value="$PROJECT_DIR$/EvilBot[Game Stats]/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EvilBot[Movies]:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EvilBot_Movies__jar</output-path>
+    <root id="archive" name="EvilBot[Movies].jar">
+      <element id="module-output" name="EvilBot[Movies]" />
+    </root>
+  </artifact>
+</component>

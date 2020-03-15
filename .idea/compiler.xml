@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="EvilBot[Quotes]" />
+        <module name="EvilBot[Twitch Notify]" />
+        <module name="EvilBot[Rebooter]" />
+        <module name="EvilBot[Game Stats]" />
+        <module name="EvilBot" />
+        <module name="EvilBot[Trivia]" />
+        <module name="EvilBot[Movies]" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EvilBot" target="1.8" />
+      <module name="EvilBot[Game Stats]" target="1.8" />
+      <module name="EvilBot[Movies]" target="1.8" />
+      <module name="EvilBot[Quotes]" target="1.8" />
+      <module name="EvilBot[Rebooter]" target="1.8" />
+      <module name="EvilBot[Trivia]" target="1.8" />
+      <module name="EvilBot[Twitch Notify]" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

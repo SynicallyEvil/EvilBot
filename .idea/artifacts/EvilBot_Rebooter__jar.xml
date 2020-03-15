@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EvilBot[Rebooter]:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/EvilBot_Rebooter__jar</output-path>
+    <root id="archive" name="EvilBot[Rebooter].jar">
+      <element id="module-output" name="EvilBot[Rebooter]" />
+    </root>
+  </artifact>
+</component>

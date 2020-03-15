@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EvilBot/EvilBot.iml" filepath="$PROJECT_DIR$/EvilBot/EvilBot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot-Projects.iml" filepath="$PROJECT_DIR$/EvilBot-Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot[Game Stats]/EvilBot[Game Stats].iml" filepath="$PROJECT_DIR$/EvilBot[Game Stats]/EvilBot[Game Stats].iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot[Movies]/EvilBot[Movies].iml" filepath="$PROJECT_DIR$/EvilBot[Movies]/EvilBot[Movies].iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot[Quotes]/EvilBot[Quotes].iml" filepath="$PROJECT_DIR$/EvilBot[Quotes]/EvilBot[Quotes].iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot[Rebooter]/EvilBot[Rebooter].iml" filepath="$PROJECT_DIR$/EvilBot[Rebooter]/EvilBot[Rebooter].iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot[Trivia]/EvilBot[Trivia].iml" filepath="$PROJECT_DIR$/EvilBot[Trivia]/EvilBot[Trivia].iml" />
+      <module fileurl="file://$PROJECT_DIR$/EvilBot[Twitch Notify]/EvilBot[Twitch Notify].iml" filepath="$PROJECT_DIR$/EvilBot[Twitch Notify]/EvilBot[Twitch Notify].iml" />
+    </modules>
+  </component>
+</project>
