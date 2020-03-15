@@ -34,7 +34,8 @@ public class Question {
 
     private Date date;
 
-    private int timeRemaining = 10;
+    private int timeLimit = 10;
+    private int timeRemaining;
 
     public Question(String category, String difficulty, String question, String correct, List<String> incorrect, String messageid) {
         this.category = category;
@@ -64,6 +65,7 @@ public class Question {
         this.member = member;
         this.event = event;
 
+        timeRemaining = timeLimit;
         runnable();
     }
 
@@ -135,6 +137,14 @@ public class Question {
         this.unicode = unicode;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
+    public int getTimeLimit(){
+        return timeLimit;
+    }
+
     public void runnable() {
         ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
         exec.scheduleAtFixedRate(() -> {
@@ -157,7 +167,7 @@ public class Question {
                     String c = (shuffledAnswers.get(2).equals(correct) ? shuffledAnswers.get(2) + " ✅" : "~~" + shuffledAnswers.get(2) + "~~" + " ❌");
                     String d = (shuffledAnswers.get(3).equals(correct) ? shuffledAnswers.get(3) + " ✅" : "~~" + shuffledAnswers.get(3) + "~~" + " ❌");
 
-                    EmbedBuilder builder = new EmbedBuilder();
+                    /*EmbedBuilder builder = new EmbedBuilder();
                     builder.setColor(getDifficultyColor());
                     builder.setFooter("Information generated at: " + date.toString(), (event.getMember() == null ? "null" : event.getMember().getUser().getEffectiveAvatarUrl()));
                     builder.setDescription("**Trivia for __" + event.getMember().getUser().getName() + "__** - React with one of the following letters to answer.")
@@ -167,38 +177,12 @@ public class Question {
                             .addField("Difficulty:", difficulty, true)
                             .addField("Time Limit:",  "10 seconds", true)
                             .addBlankField(false)
-                            .addField("Answers:", "**" + String.format("A. %s\nB. %s\nC. %s\nD. %s", a, b, c, d) + "**",false);
-
+                            .addField("Answers:", "**" + String.format("A. %s\nB. %s\nC. %s\nD. %s", a, b, c, d) + "**",false);*/
+                    EmbedBuilder builder = Utils.triviaBuilder(getDifficultyColor(), date, member, question, category, difficulty, timeLimit, a, b, c, d);
                     event.getChannel().editMessageById(messageid, builder.build()).complete();
                     exec.shutdown();
                     return;
                 }
-
-                /*
-                EmbedBuilder eBuilder = new EmbedBuilder();
-                eBuilder.setColor(getDifficultyColor());
-                eBuilder.setFooter("Information generated at: " + date.toString(), member.getUser().getEffectiveAvatarUrl());
-                eBuilder.setDescription("**Trivia for __" + member.getUser().getName() + "__** - React with one of the following letters to answer.")
-                        .addField("Question:", "**" + question + "**", false)
-                        .addBlankField(false)
-                        .addField("Category:", category, true)
-                        .addField("Difficulty:", difficulty, true)
-                        .addField("Time Limit:", (Math.max(i, 0)) + " second" + (i != 1 ? "s" : ""), true)
-                        .addBlankField(false)
-                        .addField("Answers:", "**" + String.format("A. %s\nB. %s\nC. %s\nD. %s", shuffledAnswers.get(0), shuffledAnswers.get(1), shuffledAnswers.get(2), shuffledAnswers.get(3)) + "**", false);
-
-                //if(!event.getChannel().getHistory().getMessageById(messageid).getContentDisplay().contains(" ✅"))
-                    //event.getChannel().editMessageById(messageid, eBuilder.build()).complete();
-
-                OffsetDateTime now = OffsetDateTime.now();
-
-                try{
-                    if(event.getChannel().getHistory().getMessageById(messageid) != null){
-                        System.out.println(now.compareTo(Objects.requireNonNull(Objects.requireNonNull(event.getChannel().getHistory().getMessageById(messageid)).getTimeEdited())));
-                    }
-                }catch (Exception ex){
-                    ex.printStackTrace();
-                }*/
 
                 reduceTimeRemaining();
             }catch(Exception ignored){}

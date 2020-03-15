@@ -4,6 +4,7 @@ import me.synicallyevil.evilbot.commands.Command;
 import me.synicallyevil.evilbot.commands.CommandHandler;
 import me.synicallyevil.trivia.Trivia;
 import me.synicallyevil.trivia.utils.Question;
+import me.synicallyevil.trivia.utils.Utils;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 import java.sql.Timestamp;
@@ -94,18 +95,7 @@ public class TriviaCommand implements Command {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Date date = new Date(time.getTime());
 
-        EmbedBuilder builder = new EmbedBuilder();
-        builder.setColor(question.getDifficultyColor());
-        builder.setFooter("Information generated at: " + date.toString(), handler.getUser().getEffectiveAvatarUrl());
-        builder.setDescription("**Trivia for __" + handler.getUser().getName() + "__** - React with one of the following letters to answer.")
-                .addField("Question:", "**" + question.getQuestion() + "**", false)
-                .addBlankField(false)
-                .addField("Category:", question.getCategory(), true)
-                .addField("Difficulty:", question.getDifficulty(), true)
-                .addField("Time Limit:", "10 seconds", true)
-                .addBlankField(false)
-                .addField("Answers:", "**" + String.format("A. %s\nB. %s\nC. %s\nD. %s", answers.get(0), answers.get(1), answers.get(2), answers.get(3)) + "**",false);
-
+        EmbedBuilder builder = Utils.triviaBuilder(question.getDifficultyColor(), date, handler.getMember(), question.getQuestion(), question.getCategory(), question.getDifficulty(), question.getTimeLimit(), answers.get(0), answers.get(1), answers.get(2), answers.get(3));
         handler.getEvent().getChannel().sendMessage(builder.build()).queue(message -> {
             message.addReaction(a).queue();
             message.addReaction(b).queue();
