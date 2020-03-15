@@ -148,17 +148,13 @@ public class Question {
     public void runnable() {
         ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
         exec.scheduleAtFixedRate(() -> {
-            try{ // 
-                int i = timeRemaining;
-
+            try{
                 if(!(trivia.getPlayingTrivia().containsKey(member))) {
-                    System.out.println("Not playing I guess. Finished?");
                     exec.shutdown();
                     return;
                 }
 
-                if (i < 0) {
-                    System.out.println("Time's less than 0 apparently.");
+                if (timeRemaining < 0) {
                     event.getChannel().sendMessage("Times up, " + member.getAsMention() + "!").complete();
                     trivia.getPlayingTrivia().remove(member);
 
@@ -167,17 +163,6 @@ public class Question {
                     String c = (shuffledAnswers.get(2).equals(correct) ? shuffledAnswers.get(2) + " ✅" : "~~" + shuffledAnswers.get(2) + "~~" + " ❌");
                     String d = (shuffledAnswers.get(3).equals(correct) ? shuffledAnswers.get(3) + " ✅" : "~~" + shuffledAnswers.get(3) + "~~" + " ❌");
 
-                    /*EmbedBuilder builder = new EmbedBuilder();
-                    builder.setColor(getDifficultyColor());
-                    builder.setFooter("Information generated at: " + date.toString(), (event.getMember() == null ? "null" : event.getMember().getUser().getEffectiveAvatarUrl()));
-                    builder.setDescription("**Trivia for __" + event.getMember().getUser().getName() + "__** - React with one of the following letters to answer.")
-                            .addField("Question:", "**" + question + "**", false)
-                            .addBlankField(false)
-                            .addField("Category:", category, true)
-                            .addField("Difficulty:", difficulty, true)
-                            .addField("Time Limit:",  "10 seconds", true)
-                            .addBlankField(false)
-                            .addField("Answers:", "**" + String.format("A. %s\nB. %s\nC. %s\nD. %s", a, b, c, d) + "**",false);*/
                     EmbedBuilder builder = Utils.triviaBuilder(getDifficultyColor(), date, member, question, category, difficulty, timeLimit, a, b, c, d);
                     event.getChannel().editMessageById(messageid, builder.build()).complete();
                     exec.shutdown();
