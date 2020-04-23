@@ -1,12 +1,14 @@
 package me.synicallyevil.trivia;
 
 import me.synicallyevil.evilbot.EvilBot;
+import me.synicallyevil.evilbot.EvilBotJDA;
 import me.synicallyevil.evilbot.EvilBotPlugin;
 import me.synicallyevil.trivia.commands.TriviaCommand;
 import me.synicallyevil.trivia.listeners.MessageEvents;
 import me.synicallyevil.trivia.utils.Question;
 import me.synicallyevil.trivia.utils.TriviaManager;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
 
 import java.util.ArrayList;
 import java.util.HashMap;

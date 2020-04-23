@@ -16,13 +16,8 @@ public class TriviaCommand implements Command {
     private boolean enabled = true;
     private Trivia trivia;
 
-    String a = "\uD83C\uDDE6";
-    String b = "\uD83C\uDDE7";
-    String c = "\uD83C\uDDE8";
-    String d = "\uD83C\uDDE9";
-
-    String t = "\uD83C\uDDF9";
-    String f = "\uD83C\uDDEB";
+    Timestamp time = new Timestamp(System.currentTimeMillis());
+    Date date = new Date(time.getTime());
 
     public TriviaCommand(Trivia trivia){
         this.trivia = trivia;
@@ -50,6 +45,11 @@ public class TriviaCommand implements Command {
 
     @Override
     public void onCommand(String[] args, CommandHandler handler) {
+        String a = "\uD83C\uDDE6";
+        String b = "\uD83C\uDDE7";
+        String c = "\uD83C\uDDE8";
+        String d = "\uD83C\uDDE9";
+
         if(trivia.getPlayingTrivia().containsKey(handler.getMember())){
             handler.sendMessage("You already have a trivia question in progress.");
             return;
@@ -75,8 +75,8 @@ public class TriviaCommand implements Command {
 
             switch(i){
                 case 1:
-                    correctLetter = (answers.size() > 2 ? "B" : "F");
-                    unicode = (answers.size() > 2 ? b : f);
+                    correctLetter = "B";
+                    unicode = b;
                     break;
                 case 2:
                     correctLetter = "C";
@@ -87,13 +87,10 @@ public class TriviaCommand implements Command {
                     unicode = d;
                     break;
                 default:
-                    correctLetter = (answers.size() > 2 ? "A" : "T");
-                    unicode = (answers.size() > 2 ? a : t);
+                    correctLetter = "A";
+                    unicode = a;
             }
         }
-
-        Timestamp time = new Timestamp(System.currentTimeMillis());
-        Date date = new Date(time.getTime());
 
         EmbedBuilder builder = Utils.triviaBuilder(question.getDifficultyColor(), date, handler.getMember(), question.getQuestion(), question.getCategory(), question.getDifficulty(), question.getTimeLimit(), answers.get(0), answers.get(1), answers.get(2), answers.get(3));
         handler.getEvent().getChannel().sendMessage(builder.build()).queue(message -> {
@@ -107,7 +104,5 @@ public class TriviaCommand implements Command {
         });
 
         trivia.getPlayingTrivia().put(handler.getMember(), new Question(question, correctLetter, handler.getEvent().getTextChannel(), unicode, question.getShuffledAnswers(), trivia, date, handler.getMember(), handler.getEvent()));
-        //trivia.setupRunnable(new TimeRemaining(trivia, question, handler.getMember(), handler.getEvent()), 1);
-
-    } //String.format("A. %s\nB. %s\n", answers.get(0), answers.get(1)) + (answers.size() > 2 ? String.format("C. %s\nD. %s", answers.get(2), answers.get(3)) : "")
+    }
 }

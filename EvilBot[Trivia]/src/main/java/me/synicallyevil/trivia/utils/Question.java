@@ -15,10 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Question {
 
-    private String category;
-    private String difficulty;
-    private String question;
-    private String correct;
+    private String category, difficulty, question, correct, correctLetter, messageid, unicode;
     private List<String> incorrect;
 
     private Member member;
@@ -27,11 +24,7 @@ public class Question {
 
     private List<String> shuffledAnswers = new ArrayList<>();
 
-    private String correctLetter;
     private TextChannel channel;
-    private String messageid;
-    private String unicode;
-
     private Date date;
 
     private int timeLimit = 10;
