@@ -34,8 +34,6 @@ public class EvilBotAPI {
             api = this;
 
         this.bot = bot;
-        //this.triviaManager = new TriviaManager(this);
-        //this.triviaManager.addNewQuestions(this.triviaManager.getAmount());
     }
 
     /**
@@ -53,7 +51,7 @@ public class EvilBotAPI {
      *        The JDA instance.
      */
     public JDA getJDA(){
-        return bot.getJDA();
+        return EvilBotJDA.instance.getJDA();
     }
 
     /**
@@ -82,7 +80,7 @@ public class EvilBotAPI {
      *        A class that implements ListenerAdapter.
      */
     public void addListener(ListenerAdapter clazz){
-        bot.getJDA().addEventListener(clazz);
+        EvilBotJDA.instance.addListener(clazz);
     }
 
     /**
@@ -92,7 +90,7 @@ public class EvilBotAPI {
      */
     public void addListener(ListenerAdapter... classes){
         for(ListenerAdapter clazz : classes)
-            bot.getJDA().addEventListener(clazz);
+            EvilBotJDA.instance.addListener(clazz);
     }
 
     /**
@@ -167,16 +165,4 @@ public class EvilBotAPI {
     public HashMap<Guild, GuildData> getGuildData(){
         return guildData;
     }
-
-    /*public TriviaManager getTriviaManager(){
-        return this.triviaManager;
-    }
-
-    public List<Question> getQuestions(){
-        return this.questions;
-    }
-
-    public Map<Member, Question> getPlayingTrivia() {
-        return playingTrivia;
-    }*/
 }
