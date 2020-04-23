@@ -38,7 +38,7 @@ public class Restart implements Command {
             return;
 
         handler.sendMessage("Attempting a reboot...");
-        handler.getEvilBot().getJDA().getPresence().setActivity(Activity.playing("Rebooting..."));
+        //handler.getEvilBot().getJDA().getPresence().setActivity(Activity.playing("Rebooting..."));
 
         File file = new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "rebooted.txt");
 

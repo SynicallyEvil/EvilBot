@@ -3,11 +3,16 @@ package me.synicallyevil.rebooter;
 import me.synicallyevil.evilbot.EvilBot;
 import me.synicallyevil.evilbot.EvilBotPlugin;
 import me.synicallyevil.rebooter.commands.Restart;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.ReadyEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.io.File;
 
-public class Rebooter implements EvilBotPlugin {
+public class Rebooter extends ListenerAdapter implements EvilBotPlugin {
+
+    public JDA jda;
 
     @Override
     public String pluginName() {
@@ -29,12 +34,7 @@ public class Rebooter implements EvilBotPlugin {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> quit()));
         EvilBot.getBot().getApi().addCommand(new Restart());
 
-        File file = new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "rebooted.txt");
-        if(file.exists()){
-            file.delete();
-
-            sendMessage("I have rebooted!");
-        }
+        EvilBot.getBot().getApi().addListener(this);
     }
 
     private void quit(){
@@ -46,10 +46,22 @@ public class Rebooter implements EvilBotPlugin {
 
             @Override
             public void run() {
-                User me = EvilBot.getBot().getJDA().getUserById("338881519198404609");
+                User me = jda.getUserById("338881519198404609");
                 me.openPrivateChannel().queue((channel) -> channel.sendMessage(message).queue());
             }
 
         }, 2500);
+    }
+
+    @Override
+    public void onReady(ReadyEvent event){
+        jda = event.getJDA();
+
+        File file = new File(System.getProperty("user.dir") + File.separator + "plugins" + File.separator + "rebooted.txt");
+        if(file.exists()){
+            file.delete();
+
+            sendMessage("I have rebooted!");
+        }
     }
 }
