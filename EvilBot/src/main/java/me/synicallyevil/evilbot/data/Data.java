@@ -22,7 +22,7 @@ public class Data {
     private void loadConfig(){
         try{
             Gson gson = new Gson();
-            config.setBotkey("NjcyOTA1MTE5NTQ0NjM5NDg5.XjSRxQ.Pgtys77JSyrUgDmKMKqOc0HgXyE");
+            config.setBotkey("N/A");
             config.setGame("%servers% online servers!");
             config.setStatus("ONLINE");
 
